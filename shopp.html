@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" /><link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<meta name="keywords" content="Online Shop,Aziz Sobirov Projects,Aziz Sobirov,Shopping,Shop in online">
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/3c5be74ba6.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"><script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+        <title>Shoping Web</title>
+<style>:root{
+    scroll-behavior:smooth;
+    --bg:#24A3B5;--cl:#24A3B5;
+  --bsh:0 2px 4px rgba(36,163,181.15);
+    --hbg:rgba(0,0,0,.10);
+    --wbg:rgba(255,255,255,.85);
+}
+*{
+    margin:0;padding:0;
+    box-sizing:border-box ;
+    font-family:"Quicksand";
+}
+b{
+    height:40px;width:40px;
+    display:flex;align-items:center ;
+    justify-content:center;
+    border-radius:50%;font-size:26px;
+}
+b:hover{color:#fff;transition:0.5s;
+background:var(--bg);}
+#navbar,#search-bar{
+    padding:5px;top:0;left:0;
+    height:55px;width:100vw;
+    color:var(--cl);z-index:2;
+    display:flex;align-items:center ;
+    justify-content:space-between;
+    box-shadow:var(--bsh);
+}
+#navbar{
+   position:fixed ;color:#fff;
+   box-shadow:0 0 0 #000;transition:1s;
+}
+#navbar.active{
+background:var(--wbg);
+box-shadow:var(--bsh);color:var(--cl);
+}
+#nav,#close{
+    position:fixed ;padding:10px;
+    top:0;height:100vh;
+    transition:0.7s;z-index:3;
+}
+#nav{left:-70vw;width:70vw;background:#fff;}
+#close{right:-30vw;width:30vw;}
+body.nav #nav{left:0vw;}
+body.nav #close{right:0vw;}    
+#search,#profile{
+    position:fixed ;
+    top:0;right:-100vw;
+    height:100vh;width:100vw;
+    background:#fff;overflow-y:scroll;
+    z-index:5;transition:0.7s;
+}
+#search input{
+    font-weight:700;padding:5px;
+    width:75%;font-size:18px;
+    outline:none;border:none;    
+}
+#search input:focus::placeholder{
+    transition:2s;
+    transform:translateX(-100%);
+}body.search #search{right:0vw;}
+body.profile #profile{right:0vw;}
+ul li{transition:0.5s;
+    text-align:center ;
+    list-style:none;padding:10px;
+    min-height:30px;width:100%;
+    display:flex;align-items:center ;
+    justify-content:space-between;
+}li:hover{color:var(--cl);
+background:var(--hbg);}
+a{cursor:none;padding:0;
+text-decoration:none;color:#000;}
+#shop-now{
+    height:100vh;width:100vw;      background:url("https://i.imgur.com/z55tVqY.jpg");padding:20px;color:#fff;
+    display:flex;align-items:center ;
+    justify-content:flex-start;
+    background-size:cover;
+}
+button{cursor:pointer ;
+    height:40px;width:120px;
+    border:2px solid #fff;
+    font-size:18px;font-weight:700;
+ text-transform:uppercase ;color:#fff;
+ outline:none;background:transparent;
+}
+.swiper-container{padding:20px;}
+.swiper-slide {
+      width: 80vw;height: 350px;                   
+      overflow:hidden;;
+display:flex;align-items:flex-end ;
+      border-radius:10px;color:#fff;
+    }
+ .swiper-slide h2{
+    height:55px;width:100vw;
+    display:flex;align-items:center ;
+    justify-content:center ;
+    background:var(--wbg);
+    
+ }
+     </style>
+    </head>
+    <body>
+<div id="navbar">
+<b onclick="nav()"><i class="fas fa-bars"></i></b><h2>Shopping.</h2>
+<b onclick="search()">
+<i class="fas fa-search"></i></b>
+</div> 
+       
+<div id="nav"><ul id="list">
+<li onclick="profile()" style="justify-content:flex-start;"><b style="color:#fff;background:#24A3B5;">
+<i class="far fa-user"></i></b>
+<h3 style="padding:10px;">
+My Account</h3></li></ul>  
+<div id="profile"><div id="search-bar">
+<b onclick="profile()">
+<i class="fas fa-arrow-left"></i></b>
+<h2>My Account</h2><b><i class="fas fa-search"></i></b></div>
+<ul style="background:#24A3B5;
+color:#fff;"><li><h2>Hi Guest!</h2></li><li><h4>For Personalized Offers and to Manage Your Orders</h4></li> 
+<li><button>Sign In</button>
+<button>Sign Up</button></li></ul>  
+<ul id="order"></ul>  
+</div>
+<div id="close" onclick="nav()"></div>  
+</div>
+
+<div id="search"><div id="search-bar">    
+<b onclick="search()">
+<i class="fas fa-arrow-left"></i></b>
+<input type="search" placeholder="Write Something"><b><i class="fas fa-search"></i></b></div> 
+<ul id="history"></ul>   
+</div>
+
+<div id="menu">
+<div id="shop-now"><div><h1 id="type">
+</h1><h2>Start Shopping</h2> <br /><button><a style="color:#fff;" href="#swp">start</a></button>    
+</div></div>
+  <!-- Swiper -->
+<div class="swiper-container">
+<div class="swiper-wrapper" id="swp">
+</div></div>
+
+</div>
+
+<script>
+//type
+var typed3 = new Typed('#type', { strings: ['Welcome!','Welcome!','New Arrivals.','To our Web.'], typeSpeed: 70, backSpeed: 50,showCursor: false, smartBackspace:true, loop:true , });
+//Js array
+window.addEventListener("scroll",function(){var navbar = 
+document.getElementById("navbar");
+navbar.classList.toggle("active",window.scrollY > 0);
+})
+function nav(){
+document.querySelector("body").classList.toggle("nav")}
+function search(){
+document.querySelector("body").classList.toggle("search")}
+function profile(){
+document.querySelector("body").classList.toggle("profile")}
+//
+var histories = [
+"News","Men's Fashion"]
+var list = [
+{name:"Men's Fashion",
+href:".",src:"0VCYf0A"},
+{name:"Women's Fashion",
+href:"q2",src:"yM6bHH1"},
+{name:"Toys,Baby and Kids",href:"q3",src:"2UM3oWT"},
+{name:"Mobil and Accessories",
+href:"q4",src:"j6FH62d"},
+{name:"Sports and Health",
+href:"q5",src:"I8Tu2Bl"}
+]
+var order = [
+{name:"My Orders",i:"far fa-bookmark"},{name:"Location",i:"fas fa-map-marker-alt"
+},{name:"Wishlist",i:"far fa-heart"
+},{name:"Refer & Earn",i:"fas fa-share-alt"
+},{name:"My Profile", i:"far fa-user"
+},{name:"Help & Support",i:"fas fa-headset"
+}]
+for(var h=0;h<histories.length;h++){
+document.getElementById("history").innerHTML+=`<li><h3 class="fas fa-search"></h3><h3>${histories[h]}</h3><h3 class="fas fa-exchange-alt"></h3></li>`}    
+for(var l=0;l<list.length;l++){
+document.getElementById("list").innerHTML+=`<a href="#${list[l].href}"><li onclick="nav()"><h3>${list[l].name}</h3><h3 class="fas fa-angle-right"></h3></li></a>`;
+document.getElementById("swp").innerHTML+=`<div class="swiper-slide" style="background:url('https://i.imgur.com/${list[l].src}.jpg');background-size:cover;"><h2><a href="#${list[l].href}">${list[l].name}</a>
+</h2></div>`}  
+for(var or=0;or<order.length;or++){
+document.getElementById("order").innerHTML+=`<li><h3 class="${order[or].i}"></h3><h3>${order[or].name}</h3><h3 class="fas fa-exchange-alt"></h3></li>`}  
+
+var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,loop:true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+rotate: 0,stretch: 0,
+depth: 100,modifier: 2,
+slideShadows: true,
+},autoplay: {delay: 2000,
+disableOnInteraction: false,},      
+});
+</script>
+    </body>
+</html>
